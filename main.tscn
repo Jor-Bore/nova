@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://7gpma7ilnyt4"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_vn6tt"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_vn6tt")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
