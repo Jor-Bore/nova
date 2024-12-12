@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://7gpma7ilnyt4"]
+[gd_scene load_steps=4 format=3 uid="uid://7gpma7ilnyt4"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_vn6tt"]
+[ext_resource type="Script" path="res://world.gd" id="1_qma5c"]
+[ext_resource type="PackedScene" uid="uid://b2xgb6lb0mgkl" path="res://Player.tscn" id="2_2wyhy"]
+[ext_resource type="PackedScene" uid="uid://b70m0mhbi8lql" path="res://Projectile.tscn" id="3_3kkud"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_vn6tt")
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("1_qma5c")
+playerscene = ExtResource("2_2wyhy")
+projectilescene = ExtResource("3_3kkud")
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
