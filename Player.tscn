@@ -24,5 +24,6 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_xcv46")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -3.14159
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_ba5hc")

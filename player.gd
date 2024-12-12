@@ -1,14 +1,19 @@
 extends CharacterBody2D
 
-const goal_rot = 90.0
+var goal_rot = 90.0
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const FRICTION = 30.0
 func _init() -> void:
-	rotation = goal_rot
+	pass
 
 func _process(delta: float) -> void:
-	goal_rot
+	if velocity.y != 0 || velocity.x != 0:
+		goal_rot = atan2(velocity.y,velocity.x)
+		if goal_rot == PI:
+			goal_rot = PI-0.000001
+		rotation = lerp_angle(rotation,goal_rot,0.3)
+	print(goal_rot)
 func _physics_process(_delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
