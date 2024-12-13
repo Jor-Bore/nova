@@ -1,28 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2xgb6lb0mgkl"]
 
-[ext_resource type="Texture2D" uid="uid://wkvwrocjs1ch" path="res://ough.png" id="1_c84kd"]
 [ext_resource type="Script" path="res://player.gd" id="1_padhh"]
+[ext_resource type="Texture2D" uid="uid://beg4cwytxhgrb" path="res://ship.png" id="2_wa38p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xcv46"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_t82dp"]
+points = PackedVector2Array(60, 0, -60, -39, -60, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ba5hc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_c84kd")
+"texture": ExtResource("2_wa38p")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_padhh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xcv46")
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_t82dp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 rotation = -3.14159
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_ba5hc")
+offset = Vector2(0, 30)
+flip_h = true

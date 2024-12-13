@@ -1,18 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://7gpma7ilnyt4"]
+[gd_scene load_steps=6 format=3 uid="uid://7gpma7ilnyt4"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_qma5c"]
-[ext_resource type="PackedScene" uid="uid://b2xgb6lb0mgkl" path="res://Player.tscn" id="2_2wyhy"]
-[ext_resource type="PackedScene" uid="uid://b70m0mhbi8lql" path="res://Projectile.tscn" id="3_3kkud"]
+[ext_resource type="Script" path="res://world.gd" id="1_uef1m"]
+[ext_resource type="PackedScene" uid="uid://b2xgb6lb0mgkl" path="res://Player.tscn" id="2_8y3li"]
+[ext_resource type="PackedScene" uid="uid://b70m0mhbi8lql" path="res://Projectile.tscn" id="3_pdomy"]
+[ext_resource type="PackedScene" uid="uid://13ykt7vfm5r" path="res://Asteroid.tscn" id="4_8ic5n"]
+
+[sub_resource type="Curve2D" id="Curve2D_4r5ft"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -192, -192, 0, 0, 0, 0, 2752, -192, 0, 0, 0, 0, 2752, 1600, 0, 0, 0, 0, -192, 1600, 0, 0, 0, 0, -192, -192)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
-script = ExtResource("1_qma5c")
-playerscene = ExtResource("2_2wyhy")
-projectilescene = ExtResource("3_3kkud")
+script = ExtResource("1_uef1m")
+playerscene = ExtResource("2_8y3li")
+projectilescene = ExtResource("3_pdomy")
+asteroidscene = ExtResource("4_8ic5n")
+
+[node name="Asteroid Path" type="Path2D" parent="World"]
+curve = SubResource("Curve2D_4r5ft")
+
+[node name="Asteroid Spawn" type="PathFollow2D" parent="World/Asteroid Path"]
+position = Vector2(-192, -192)
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Asteroid Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Asteroid Timer" to="World" method="_on_asteroid_timer_timeout"]

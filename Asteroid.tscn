@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://13ykt7vfm5r"]
+
+[ext_resource type="Script" path="res://asteroid.gd" id="1_eiwg5"]
+[ext_resource type="Script" path="res://asteroid_shape.gd" id="2_5ew1v"]
+[ext_resource type="Texture2D" uid="uid://rndoqqnnantc" path="res://asteroidtex.png" id="3_5dewx"]
+[ext_resource type="Script" path="res://asteroid_tex.gd" id="4_sc7pk"]
+
+[node name="Asteroid" type="RigidBody2D"]
+position = Vector2(991, 557)
+collision_layer = 3
+gravity_scale = 0.0
+script = ExtResource("1_eiwg5")
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+script = ExtResource("2_5ew1v")
+
+[node name="Texture" type="Polygon2D" parent="Hitbox"]
+texture = ExtResource("3_5dewx")
+texture_offset = Vector2(331, 331)
+texture_scale = Vector2(1.3, 1.3)
+script = ExtResource("4_sc7pk")
