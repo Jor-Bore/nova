@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://blpi1kkso6f6y"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_cwhmk"]
+[ext_resource type="PackedScene" uid="uid://b2xgb6lb0mgkl" path="res://Player.tscn" id="2_rt27m"]
+[ext_resource type="PackedScene" uid="uid://b70m0mhbi8lql" path="res://Projectile.tscn" id="3_8d1j7"]
+[ext_resource type="PackedScene" uid="uid://13ykt7vfm5r" path="res://Asteroid.tscn" id="4_urvvq"]
+
+[sub_resource type="Curve2D" id="Curve2D_4r5ft"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -192, -192, 0, 0, 0, 0, 2100, -192, 0, 0, 0, 0, 2100, 1200, 0, 0, 0, 0, -192, 1200, 0, 0, 0, 0, -192, -192)
+}
+point_count = 5
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_cwhmk")
+playerscene = ExtResource("2_rt27m")
+projectilescene = ExtResource("3_8d1j7")
+asteroidscene = ExtResource("4_urvvq")
+
+[node name="Asteroid Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4r5ft")
+
+[node name="Asteroid Spawn" type="PathFollow2D" parent="Asteroid Path"]
+position = Vector2(-192, -192)
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

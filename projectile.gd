@@ -2,6 +2,7 @@ extends Area2D
 
 
 @export var SPEED = 10
+var oof
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,3 +20,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	queue_free()
+	oof = body

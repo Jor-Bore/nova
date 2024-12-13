@@ -5,7 +5,7 @@ var goal_rot = 90.0
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const FRICTION = 30.0
-
+signal game_over
 
 func _ready() -> void:
 	pass
@@ -36,3 +36,7 @@ func _physics_process(_delta: float) -> void:
 func _input(event):
 	if event.is_action_pressed("player_shoot"):
 		shoot.emit()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	game_over.emit()
